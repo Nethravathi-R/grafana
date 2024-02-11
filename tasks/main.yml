@@ -15,6 +15,7 @@
   apt:
     name: grafana
     state: present
+    update_cache: 'yes'
 
 - name: Start and enable Grafana service
   systemd:
