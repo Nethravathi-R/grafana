@@ -1,16 +1,21 @@
-- name: Install Prometheus
-  apt:
-    name: prometheus
+- name: Add Grafana APT repository key
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
     state: present
-  become: yes
-  tags:
-    - prometheus
 
-- name: Ensure Prometheus service is enabled and started
+- name: Add Grafana APT repository
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+    filename: grafana
+
+- name: Install Grafana
+  apt:
+    name: grafana
+    state: present
+
+- name: Start and enable Grafana service
   systemd:
-    name: prometheus
-    state: started
+    name: grafana-server
     enabled: yes
-  become: yes
-  tags:
-    - prometheus
+    state: started
