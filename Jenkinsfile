@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'rm -rf grafana'
                 sh 'git clone https://github.com/sanjay0288/grafana.git'
             }
         }
