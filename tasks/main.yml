@@ -2,23 +2,30 @@
   apt_key:
     url: https://packages.grafana.com/gpg.key
     state: present
+  become: yes
 
 - name: Add Grafana APT repository
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
     state: present
     filename: grafana
+  become: yes
+
 - name: Update package cache
   apt:
     update_cache: yes
+  become: yes
+
 - name: Install Grafana
   apt:
     name: grafana
     state: present
     update_cache: yes
+  become: yes
 
 - name: Start and enable Grafana service
   systemd:
     name: grafana-server
     enabled: yes
     state: started
+  become: yes
