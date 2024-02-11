@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Deploy Grafana') {
             steps {
-                sh 'ansible-playbook deploy-grafana.yml -i inventory/hosts'
+                sh 'ansible-playbook grafana.yml -i inventory/hosts'
             }
         }
     }
