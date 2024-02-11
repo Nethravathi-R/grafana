@@ -21,7 +21,7 @@
     name: grafana
     state: present
     update_cache: yes
-  become: yes
+    become: yes
 
 - name: Start and enable Grafana service
   systemd:
