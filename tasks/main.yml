@@ -3,14 +3,12 @@ url: https://packages.grafana.com/gpg.key
 - name: Add Grafana APT repository
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
-- name: Update Grafana repository link
+- name: Ensure Grafana repository line is present in sources list file
   ansible.builtin.lineinfile:
     path: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
     state: present
-    filename: grafana
     line: "deb https://packages.grafana.com/oss/deb stable main"
-
-
+  become: yes
 - name: Update package cache
   apt:
     update_cache: yes
