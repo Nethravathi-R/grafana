@@ -11,6 +11,23 @@ url: https://packages.grafana.com/gpg.key
   remote_src: yes
   become: yes
   delegate_to: 172.31.10.18
+  register: copy_result
+
+- name: Check if file is copied successfully
+  ansible.builtin.debug:
+    msg: "{{ copy_result }}"
+  when: copy_result.changed
+
+- name: Print the content of the copied file
+  ansible.builtin.shell:
+    cmd: cat /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
+  register: cat_result
+  when: copy_result.changed
+
+- name: Display the content of the copied file
+  ansible.builtin.debug:
+    msg: "{{ cat_result.stdout }}"
+  when: cat_result.stdout is defined
 
 
 - name: Update package cache
