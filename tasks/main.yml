@@ -6,7 +6,7 @@ url: https://packages.grafana.com/gpg.key
     repo: deb https://packages.grafana.com/oss/deb stable main
 - name: Update Grafana repository link
   ansible.builtin.template:
-    src: /grafana_repo.j2
+    src: /var/lib/jenkins/workspace/Grafana/grafana_repo.j2
     dest: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
   become: yes
 
