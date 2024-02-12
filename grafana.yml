@@ -1,4 +1,4 @@
 - name: Install Grafana
-  hosts: all
+  hosts: java
   roles:
     - grafana
