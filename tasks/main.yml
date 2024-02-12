@@ -1,16 +1,15 @@
 url: https://packages.grafana.com/gpg.key
     state: present
-
 - name: Add Grafana APT repository
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
 - name: Update Grafana repository link
-  ansible.builtin.copy:
-    src: /var/lib/jenkins/workspace/Grafana/grafana_repo.j2
-    dest: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
-  remote_src: yes
-  become: yes
-  delegate_to: 172.31.10.18
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
+    state: present
+    filename: grafana
+    line: "deb https://packages.grafana.com/oss/deb stable main"
+
 
 - name: Update package cache
   apt:
