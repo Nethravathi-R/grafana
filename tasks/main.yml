@@ -8,7 +8,7 @@ url: https://packages.grafana.com/gpg.key
     path: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
     state: present
     line: "deb https://packages.grafana.com/oss/deb stable main"
-  become: yes
+  become: true
 - name: Update package cache
   apt:
     update_cache: yes
