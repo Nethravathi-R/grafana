@@ -8,8 +8,8 @@ url: https://packages.grafana.com/gpg.key
   ansible.builtin.lineinfile:
     path: /etc/apt/sources.list.d/packages_grafana_com_oss_deb.list
     state: present
-    filename: grafana
     line: "deb https://packages.grafana.com/oss/deb stable main"
+
 
 - name: Update package cache
   apt:
